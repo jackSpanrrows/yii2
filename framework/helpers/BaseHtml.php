@@ -15,7 +15,7 @@ use yii\validators\StringValidator;
 use yii\web\Request;
 
 /**
- * BaseHtml [[Html]] 提供了具体的实现。
+ * BaseHtml 为 [[Html]] 提供了具体的实现。
  *
  * 不要使用 BaseHtml 类。使用 [[Html]] 类来替代。
  *
