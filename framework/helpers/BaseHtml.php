@@ -223,7 +223,7 @@ class BaseHtml
      * - condition：为 IE 指定的条件注释，例如，`lt IE 9`。
      *   当前指定的，生成的 `link` 标记将使用注释封闭。
      *   这主要是用于支持 IE 旧版本浏览器。
-     * - noscript：如果设置为 true， `link` 标签会被包裹进 `<noscript>` 标记中。
+     * - noscript：如果设置为 true，`link` 标签会被包裹进 `<noscript>` 标记中。
      *
      * 其余选项将渲染为结果链接标记的属性。
      * 这些值将使用 [[encode()]] 进行 HTML 编码。如果这个值不存在，它将不渲染相应的属性。
@@ -322,7 +322,7 @@ class BaseHtml
      *
      * 指定的选项：
      *
-     *  - `csrf`：是否生成 CSRF 隐藏输入。默认为真。
+     *  - `csrf`：是否生成 CSRF 隐藏输入。默认为 true。
      *
      * @return string 生成的表单开始标记。
      * @see endForm()
@@ -421,7 +421,7 @@ class BaseHtml
      * 因此你可以传递 HTML 代码，诸如 image 标记。如果这是来自最终用户，
      * 你应该考虑 [[encode()]] 它可以防止 XSS 攻击。
      * @param string $email email 地址。如果这个值不存在，
-     * 第一个参数 (link body) 被处理为 email 地址使用。
+     * 第一个参数 (链接体) 被处理为 email 地址使用。
      * @param array $options 以键值对表示的标记选项。
      * 这些将作为结果标记的属性渲染。这些值将使用 [[encode()]] 进行 HTML 编码。
      * 如果这个值不存在，将不渲染相应的属性。
@@ -740,7 +740,7 @@ class BaseHtml
      * - label：字符串，复选框旁边显示的标签。它不会被 HTML 编码。
      *   因此你可以传递 HTML 代码，诸如 image 标记。如果这是来自最终用户，你应该考虑 [[encode()]] 它可以防止 XSS 攻击。
      *   当指定此选项时，复选框将由标签标记闭合。
-     * - labelOptions：数组，给 label 标签的 HTML 属性。除非设置 "标签" 选项，否则不要设置此选项。
+     * - labelOptions：数组，给 label 标签的 HTML 属性。除非设置 "label" 选项，否则不要设置此选项。
      *
      * 其余选项将渲染为结果复选框标记的属性。
      * 这些值将使用 [[encode()]] 进行 HTML 编码。如果这个值不存在，它将不渲染相应的属性。
@@ -816,7 +816,7 @@ class BaseHtml
      * - groups：数组，optgroup 标记的属性。它的结构类似于 'options'，
      *   除了数组键表示在 $items 中指定的 optgroup 标签。
      * - encodeSpaces：布尔，是否将选项提示和选项值中的空格编码为 `&nbsp;` 字符。
-     *   默认为假。
+     *   默认为 false。
      * - encode：布尔，是否对选项提示和选项值字符进行编码。
      *   默认是 `true`。此选项从 2.0.3 开始提供。
      *
@@ -874,7 +874,7 @@ class BaseHtml
      *   当设置此属性时，将生成一个隐藏字段，如果在多个模式下没有选择任何选项，
      *   我们仍然可以获得传递的未选择的值。
      * - encodeSpaces：布尔，是否在选项提示符和选项值中用 `&nbsp;` 字符编码空格。
-     *   默认是假。
+     *   默认是 false。
      * - encode：布尔，是否对选项提示和选项值字符进行编码。
      *   默认是 `true`。此选项从 2.0.3 开始提供。
      *
@@ -923,12 +923,12 @@ class BaseHtml
      * @param array $options 复选框列表容器标记的选项（name => config）。
      * 以下选项是专门处理的：
      *
-     * - tag：字符串 | 假，容器元素的标记名。不带容器的渲染复选框为假。
+     * - tag：字符串 |false，容器元素的标记名。假以渲染不带容器的复选框。
      *   另请参见 [[tag()]]。
      * - unselect：字符串，未选中任何复选框时应提交的值。
      *   通过设置此选项，将生成隐藏输入。
-     * - disabled：布尔，是否应禁用由取消选择选项生成的隐藏输入。默认为假。
-     * - encode：布尔，是否 HTML 编码复选框标签。默认为真。
+     * - disabled：布尔，是否应禁用由取消选择选项生成的隐藏输入。默认为 false。
+     * - encode：布尔，是否 HTML 编码复选框标签。默认为 true。
      *   如果设置了 `item` 选项，则忽略此选项。
      * - separator：字符串，分隔项目的 HTML 代码。
      * - itemOptions：数组，使用 [[checkbox()]] 生成复选框标记的选项。
@@ -1012,12 +1012,12 @@ class BaseHtml
      * @param array $options 单选按钮列表容器标记的选项（name => config）。
      * 以下选项是专门处理的：
      *
-     * - tag：字符串 | 假，容器元素的标记名。不带容器的渲染复选框为假。
+     * - tag：字符串 |false，容器元素的标记名。假以渲染不带容器的复选框。
      *   另请参见 [[tag()]]。
      * - unselect：字符串，当没有选择任何单选按钮时应提交的值。
      *   通过设置此选项，将生成隐藏输入。
-     * - disabled：布尔值，是否应禁用由取消选择选项生成的隐藏输入。默认为假。
-     * - encode：布尔值，是否 HTML 编码复选框标签。默认为真。
+     * - disabled：布尔值，是否应禁用由取消选择选项生成的隐藏输入。默认为 false。
+     * - encode：布尔值，是否 HTML 编码复选框标签。默认为 true。
      *   如果设置了 `item` 选项，则忽略此选项。
      * - separator：字符串，分隔项目的 HTML 代码。
      * - itemOptions：数组，使用 [[radio()]] 生成单选按钮标记的选项。
@@ -1088,10 +1088,10 @@ class BaseHtml
     /**
      * 生成无序列表。
      * @param array|\Traversable $items 用于生成列表的项。每个项生成一个列表项。
-     * 请注意，如果未设置 `$options['encode']` 或者真则项目将自动进行 HTML 编码。
+     * 请注意，如果未设置 `$options['encode']` 或者 true 则项目将自动进行 HTML 编码。
      * @param array $options 单选按钮列表的选项（name => config）。支持以下选项：
      *
-     * - encode：布尔值，是否对项目进行 HTML 编码。默认是真。
+     * - encode：布尔值，是否对项目进行 HTML 编码。默认是 true。
      *   如果指定了 `item` 选项，则忽略此选项。
      * - separator：字符串，分隔项的 HTML 代码。默认为简单换行符（`"\n"`）。
      *   此选项自 2.0.7 版起可用。
@@ -1141,10 +1141,10 @@ class BaseHtml
     /**
      * 生成有序列表。
      * @param array|\Traversable $items 用于生成列表的项。每个项生成一个列表项。
-     * 请注意，如果 `$options['encode']` 未设置或为真，则项目将自动进行 HTML 编码。
+     * 请注意，如果 `$options['encode']` 未设置或为 true，则项目将自动进行 HTML 编码。
      * @param array $options 单选按钮列表的选项（名称=>config）。支持以下选项：
      *
-     * - encode：布尔值，是否对项目进行 HTML 编码。默认为真。
+     * - encode：布尔值，是否对项目进行 HTML 编码。默认为 true。
      *   如果指定了 `item` 选项，则忽略此选项。
      * - itemOptions：数组，`li` 标记的 HTML 属性。如果指定了 `item` 选项，则忽略此选项。
      * - item：回调，用于生成每个单独列表项的回调。
@@ -1235,8 +1235,8 @@ class BaseHtml
      *
      * - header：字符串，错误摘要的头 HTML。如果没有设置，将使用默认提示字符串。
      * - footer：字符串，错误摘要的页脚 HTML。默认为空字符串。
-     * - encode：布尔值，如果设置为假，则不会对错误消息进行编码。默认是 `true`。
-     * - showAllErrors：布尔值，如果设置为真，则将显示每个属性的每个错误消息，
+     * - encode：布尔值，如果设置为 false，则不会对错误消息进行编码。默认是 `true`。
+     * - showAllErrors：布尔值，如果设置为 true，则将显示每个属性的每个错误消息，
      *   否则只显示每个属性的第一条错误消息。默认是 `false`。
      *   选项从 2.0.10 开始可用。
      *
@@ -1266,8 +1266,8 @@ class BaseHtml
     /**
      * 返回验证错误数组
      * @param Model|Model[] $models 要显示其验证错误的模型。
-     * @param $encode 布尔值，如果设置为假则不会对错误消息进行编码。
-     * @param $showAllErrors 布尔值，如果设置为真，则将显示每个属性的每个错误消息，
+     * @param $encode 布尔值，如果设置为 false 则不会对错误消息进行编码。
+     * @param $showAllErrors 布尔值，如果设置为 true，则将显示每个属性的每个错误消息，
      * 否则只显示每个属性的第一条错误消息。
      * @return 验证错误数组
      * @since 2.0.14
@@ -1309,7 +1309,7 @@ class BaseHtml
      *
      * - tag：这将指定标记名。如果未设置，将使用 "div"。
      *   也可以参考 [[tag()]]。
-     * - encode：布尔值，如果设置为假则不会对错误消息进行编码。
+     * - encode：布尔值，如果设置为 false 则不会对错误消息进行编码。
      * - 错误源（since 2.0.14）：\Closure|callable，将调用以获取错误消息的回调。
      *   回调的签名必须是：`function ($model, $attribute)` 并返回一个字符串。
      *   如果不设置，`$model->getFirstError()` 方法将被调用。
@@ -1360,7 +1360,7 @@ class BaseHtml
     }
 
     /**
-     * 如果 `maxlength` 选项设置为真并且模型属性由字符串验证器验证，
+     * 如果 `maxlength` 选项设置为 true 并且模型属性由字符串验证器验证，
      * 则 `maxlength` 选项的值将被 [[\yii\validators\StringValidator::max]] 处理。
      * @param Model $model 模型对象
      * @param string $attribute 属性名或表达式。
@@ -1456,7 +1456,7 @@ class BaseHtml
      *   则 `maxlength` 选项的值将被 [[\yii\validators\StringValidator::max]] 处理。
      *   此选项自 2.0.6 版起可用。
      * - placeholder：字符串 | 布尔型，当 `placeholder` 等于 `true` 时，
-     *   $model中的属性标签将用作占位符（此行为在2.0.14版之后可用）。
+     *   $model中的属性标签将用作占位符（此行为在 2.0.14 版之后可用）。
      *
      * @return string 生成输入标记
      */
@@ -1517,7 +1517,7 @@ class BaseHtml
      *   则 `maxlength` 选项的值将被 [[\yii\validators\StringValidator::max]] 处理。
      *   此选项自 2.0.6 版起可用。
      * - placeholder：字符串 | 布尔型，当 `placeholder` 等于 `true` 时，
-     *   $model中的属性标签将用作占位符（此行为在2.0.14版之后可用）。
+     *   $model中的属性标签将用作占位符（此行为在 2.0.14 版之后可用）。
      *
      * @return string 生成文本域标记
      */
@@ -1646,7 +1646,7 @@ class BaseHtml
      * - groups：数组，optgroup 标记的属性。它的结构类似于 'options'，
      *   除了数组键表示在 $items 中指定的 optgroup 标签。
      * - encodeSpaces：布尔，是否将选项提示和选项值中的空格编码为字符。
-     *   默认是假。
+     *   默认是 false。
      * - encode：布尔，是否对选项提示和选项值字符进行编码。
      *   默认是 'ture'。此选项从 2.0.3 开始提供。
      *
@@ -1704,7 +1704,7 @@ class BaseHtml
      *   设置此属性后，将生成一个隐藏字段，这样，
      *   如果在多个模式下没有选择任何选项，我们仍然可以获取已发布的取消选择值。
      * - encodeSpaces：布尔，是否将选项提示和选项值中的空格编码为字符。
-     *   默认是假。
+     *   默认是 false。
      * - encode：布尔，是否对选项提示和选项值字符进行编码。
      *   默认是 'ture'。此选项从 2.0.3 开始提供。
      *
@@ -1733,12 +1733,12 @@ class BaseHtml
      * @param array $options 复选框列表容器标记的选项（name=>config）。
      *以下选项是专门处理的：
      *
-     * - tag：字符串 | 假, 容器元素的标记名。False 用于在没有容器的情况下呈现复选框。
+     * - tag：字符串 |false, 容器元素的标记名。False 用于在没有容器的情况下呈现复选框。
      *   也可以参考 [[tag()]]。
      * - unselect：字符串，当没有选中任何复选框时应提交的值。
      *   您可以将此选项设置为 null，以防止默认值提交。
      *   如果未设置此选项，将提交一个空字符串。
-     * - encode：布尔型，是否对复选框标签进行 HTML 编码。默认是真。
+     * - encode：布尔型，是否对复选框标签进行 HTML 编码。默认是 true。
      *   如果设置了 `item` 选项，则忽略此选项。
      * - separator：字符串，区分 HTML 代码项。
      * - itemOptions：数组，使用 [[checkbox()]] 生成复选框标记的选项。
@@ -1775,12 +1775,12 @@ class BaseHtml
      * @param array $options 单选按钮列表容器标记的选项（name=>config）。
      *以下选项是专门处理的：
      *
-     * - tag：字符串 | 假，容器元素的标记名。假以呈现不带容器的单选按钮。
+     * - tag：字符串 |false，容器元素的标记名。假以呈现不带容器的单选按钮。
      *   也可以参考 [[tag()]]。
      * - unselect：字符串，未选择任何单选按钮时应提交的值。
      *   您可以将此选项设置为空，以防止提交默认值。
      *   如果未设置此选项，则将提交空字符串。
-     * - encode：布尔型，是否 HTML 编码复选框标签。默认是真。
+     * - encode：布尔型，是否 HTML 编码复选框标签。默认是 true。
      *   如果设置了 `item` 选项，则忽略此选项。
      * - separator：字符串，区分 HTML 代码。
      * - itemOptions：数组，使用 [[radio()]] 生成单选按钮标记的选项。
@@ -1926,7 +1926,7 @@ class BaseHtml
      *
      * @param array $attributes 要渲染的属性。属性值将使用 [[encode()]] 进行 HTML 编码。
      * @return string 渲染结果。如果属性不是空的，
-     * 它们将渲染为一个带有前导空格的字符串（以便它可以直接附加到标记中的标记名称。
+     * 它们将渲染为一个带有前导空格的字符串（以便它可以直接附加到标记中的标记名称）。
      * 如果没有属性，则返回空字符串。
      * @see addCssClass()
      */
@@ -2064,7 +2064,7 @@ class BaseHtml
      *
      * 如果选项已包含 `style` 元素，
      * 则新样式将与现有样式合并。当新样式和旧样式中都存在 CSS 属性时，
-     * 如果 `$overwrite` 为真，则旧的可能会被覆盖。
+     * 如果 `$overwrite` 为 true，则旧的可能会被覆盖。
      *
      * 例如，
      *
